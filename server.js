@@ -16,37 +16,49 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/user/settings", (req, res, next) => {
-  res.show("login.html");
+//////////////////////////////////////
 
-  // next();
+app.get("/hello/:name", (req, res) => {
+  res.render("hello", { name: req.params.name });
 });
 
-app.use("/user/panel", (req, res, next) => {
-  res.show("login.html");
-  // next();
+app.get("/user/settings", (req, res, next) => {
+  res.render("login");
 });
 
-app.get("/", (req, res) => {
-  res.show("index.html");
-});
-
-app.get("/home", (req, res) => {
-  res.show("index.html");
+app.get("/user/panel", (req, res) => {
+  res.render("login");
 });
 
 app.get("/about", (req, res) => {
-  res.show("about.html");
+  res.render("about");
 });
 
-app.get("/hello/:name", (req, res) => {
-  res.render("hello", { layout: false, name: req.params.name });
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+app.get("/home", (req, res) => {
+  res.render("index");
+});
+
+////NEW ONES
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
+
+app.get("/info", (req, res) => {
+  res.render("info");
+});
+
+app.get("/history", (req, res) => {
+  res.render("history", { layout: "dark" });
 });
 
 app.use(express.static(path.join(__dirname, "./public")));
 
 app.use((req, res, next) => {
-  res.status(404).show("notFound.html");
+  res.status(404).render("notFound");
 });
 
 app.listen(8000, () => {
