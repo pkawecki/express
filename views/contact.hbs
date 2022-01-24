@@ -1,1 +1,35 @@
-<h1>Some Contact data</h1>
+<form
+  enctype="multipart/form-data"
+  action="/contact/send-message"
+  method="POST"
+>
+  {{#if isSent}}
+    <div class="isSent">
+        <div> Message has been sent and {{picName}} has been saved </div>
+        <img style="max-width: 300px; max-height:300px" src=./../images/{{picName}} alt=""></div>
+  {{/if}}
+  {{#if isError}}
+    <div class="isError">Please fill all the fields!</div>
+  {{/if}}
+  <label>
+    Your name:
+    <input type="text" name="author" />
+  </label>
+  <label>
+    Your email:
+    <input type="email" name="sender" />
+  </label>
+  <label>
+    Title:
+    <input type="text" name="title" />
+  </label>
+  <label>
+    Message:
+    <textarea name="message"></textarea>
+  </label>
+  <label>
+      Project design:
+      <input type="file" accept=".gif,.jpg,.jpeg,.png" name="picture" ></label>
+  </label>
+  <button type="submit">Send message</button>
+</form>
